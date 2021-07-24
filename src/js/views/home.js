@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import Context from "../store/appContext";
 
 //create your first component
 export function Home() {
 	const [list, setList] = useState([]);
 	const [todo, setTodo] = useState("");
+	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center mt-5">
@@ -16,7 +18,8 @@ export function Home() {
 			/>
 			<button
 				onClick={() => {
-					setList([...list, todo]);
+					// setList([...list, todo]);
+					actions.addTodo(todo);
 					setTodo("");
 				}}
 				className="btn btn-success m-2">
