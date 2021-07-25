@@ -4,7 +4,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			todoList: []
 		},
 		actions: {
-			addTodo: () => {}
+			addTodo: todo => {
+				let newItem = getStore().todoList;
+				setStore({ todoList: [...newItem, todo] });
+			},
+			deleteItem: delItem => {
+				setStore({ todoList: delItem });
+			}
 		}
 	};
 };

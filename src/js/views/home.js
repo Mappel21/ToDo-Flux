@@ -1,9 +1,8 @@
 import React, { useState, useContext } from "react";
-import Context from "../store/appContext";
+import { Context } from "../store/appContext";
 
 //create your first component
 export function Home() {
-	const [list, setList] = useState([]);
 	const [todo, setTodo] = useState("");
 	const { store, actions } = useContext(Context);
 
@@ -25,13 +24,13 @@ export function Home() {
 				className="btn btn-success m-2">
 				Add
 			</button>
-			{list.map((item, index) => (
+			{store.todoList.map((item, index) => (
 				<div key={index}>
 					{item}
-					<button onClick={() => setList(list.filter(word => word !== item))}>x</button>
+					<button onClick={() => actions.deleteItem(store.todoList.filter(word => word !== item))}>x</button>
 				</div>
 			))}
-			<footer>{list.length + " items left"}</footer>
+			{/* <footer>{list.length + " items left"}</footer> */}
 		</div>
 	);
 }
